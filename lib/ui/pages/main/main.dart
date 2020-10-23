@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodcourt/ui/pages/favorite/favorite.dart';
 import 'package:foodcourt/ui/pages/home/home.dart';
+import 'package:foodcourt/ui/pages/main/initialize_item.dart';
 
 class FCMainScreen extends StatefulWidget {
   static const String routeName = '/';
@@ -17,16 +18,10 @@ class _FCMainScreenState extends State<FCMainScreen> {
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
-        children: [
-          FCHomeScreen(),
-          FCFavoriteScreen(),
-        ],
+        children: pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('首页')),
-          BottomNavigationBarItem(icon: Icon(Icons.star), title: Text('收藏')),
-        ],
+        items: bottomBarItems,
         currentIndex: _currentIndex,
         onTap: (index) {
          setState(() {
