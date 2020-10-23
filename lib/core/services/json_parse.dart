@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:foodcourt/core/model/Category.dart';
+import 'package:foodcourt/core/model/category.dart';
 
 class JsonParse {
   ///获取分类数据

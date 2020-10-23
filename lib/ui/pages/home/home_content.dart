@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:foodcourt/core/model/Category.dart';
+import 'package:foodcourt/core/model/category.dart';
 import 'package:foodcourt/core/services/json_parse.dart';
-
+import 'package:foodcourt/core/extension/int_extension.dart';
 class FCHomeContent extends StatefulWidget {
   @override
   _FCHomeContentState createState() => _FCHomeContentState();
 }
 
 class _FCHomeContentState extends State<FCHomeContent> {
-  List<CategoryModel> categorys = [];
+  List<CategoryModel> categoryModels = [];
 
   @override
   void initState() {
     super.initState();
     JsonParse.getCategoryJsonParseData().then((value) {
       setState(() {
-        categorys = value;
+        categoryModels = value;
       });
     });
   }
@@ -25,23 +25,30 @@ class _FCHomeContentState extends State<FCHomeContent> {
     return Container(
       alignment: Alignment.center,
       child: GridView.builder(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.all(10.px),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            childAspectRatio: 1.5,
-            crossAxisCount: 2,
-            crossAxisSpacing: 20,
-            mainAxisSpacing: 20,),
-        itemCount: categorys.length,
-        itemBuilder: (ctx,index){
+          childAspectRatio: 1.5,
+          crossAxisCount: 2,
+          crossAxisSpacing: 20.px,
+          mainAxisSpacing: 20.px,
+        ),
+        itemCount: categoryModels.length,
+        itemBuilder: (ctx, index) {
           return Container(
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: Colors.red
+                borderRadius: BorderRadius.circular(12.px),
+                gradient: LinearGradient(colors: [
+                  categoryModels[index].cColor.withOpacity(.5),
+                  categoryModels[index].cColor,
+                ])),
+            child: Text(
+              categoryModels[index].title,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText2
+                  .copyWith(fontWeight: FontWeight.bold),
             ),
-            child: Text(categorys[index].title,style: Theme.of(context).textTheme.bodyText2.copyWith(
-              fontWeight: FontWeight.bold
-            ),),
           );
         },
       ),
