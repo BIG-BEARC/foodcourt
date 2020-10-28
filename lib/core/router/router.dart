@@ -4,6 +4,7 @@ import 'package:foodcourt/ui/pages/err/unkonwn_page.dart';
 import 'package:foodcourt/ui/pages/favorite/favorite.dart';
 import 'package:foodcourt/ui/pages/home/home.dart';
 import 'package:foodcourt/ui/pages/main/main.dart';
+import 'package:foodcourt/ui/pages/meal/meal.dart';
 
 class Routers {
   static final String initialRoute = FCMainScreen.routeName;
@@ -20,5 +21,6 @@ class Routers {
 
   static final Map<String, WidgetBuilder> routes = {
     FCMainScreen.routeName: (ctx) => FCMainScreen(),
+    FCMealScreen.routeName: (ctx) => FCMealScreen(),
   };
 }
