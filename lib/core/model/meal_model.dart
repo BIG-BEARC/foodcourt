@@ -7,7 +7,7 @@ import 'dart:convert';
 FCMealModel welcomeFromJson(String str) => FCMealModel.fromJson(json.decode(str));
 
 String welcomeToJson(FCMealModel data) => json.encode(data.toJson());
-
+List<String> complexities = ["简单", "中等", "困难"];
 class FCMealModel {
   FCMealModel({
     this.id,
@@ -15,6 +15,7 @@ class FCMealModel {
     this.title,
     this.affordability,
     this.complexity,
+    this.complexityStr,
     this.imageUrl,
     this.duration,
     this.ingredients,
@@ -38,13 +39,14 @@ class FCMealModel {
   bool isVegan;
   bool isVegetarian;
   bool isLactoseFree;
-
+  String complexityStr;
   factory FCMealModel.fromJson(Map<String, dynamic> json) => FCMealModel(
     id: json["id"],
     categories: List<String>.from(json["categories"].map((x) => x)),
     title: json["title"],
     affordability: json["affordability"],
     complexity: json["complexity"],
+    complexityStr: complexities[json["complexity"]],
     imageUrl: json["imageUrl"],
     duration: json["duration"],
     ingredients: List<String>.from(json["ingredients"].map((x) => x)),

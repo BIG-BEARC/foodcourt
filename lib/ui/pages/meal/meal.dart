@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:foodcourt/core/model/category.dart';
+import 'package:foodcourt/ui/pages/meal/meal_item.dart';
 
 class FCMealScreen extends StatelessWidget {
   static const String routeName = '/FCMealScreen';
@@ -11,9 +12,7 @@ class FCMealScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(categoryModel.title),
       ),
-      body: Container(
-        child: Text(categoryModel.title),
-      ),
+      body: FCMealContent(),
     );
   }
 }
