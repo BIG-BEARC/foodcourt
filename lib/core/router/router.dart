@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodcourt/ui/pages/detail/detail.dart';
 
 import 'package:foodcourt/ui/pages/err/unkonwn_page.dart';
 import 'package:foodcourt/ui/pages/favorite/favorite.dart';
@@ -22,5 +23,6 @@ class Routers {
   static final Map<String, WidgetBuilder> routes = {
     FCMainScreen.routeName: (ctx) => FCMainScreen(),
     FCMealScreen.routeName: (ctx) => FCMealScreen(),
+    FCDetailScreen.routeName:(ctx)=>FCDetailScreen(),
   };
 }

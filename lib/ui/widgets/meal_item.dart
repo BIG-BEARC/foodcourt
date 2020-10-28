@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:foodcourt/core/model/meal_model.dart';
 import 'package:foodcourt/core/extension/int_extension.dart';
+import 'package:foodcourt/ui/pages/detail/detail.dart';
 import 'package:foodcourt/ui/pages/meal/operation_item.dart';
 
 class FCMealItem extends StatelessWidget {
@@ -13,17 +14,22 @@ class FCMealItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.all(10.px),
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(_circular))),
-      elevation: 8,
-      child: Column(
-        children: [
-          _buildBasicInfo(context),
-          _buildOperationInfo(),
-        ],
+    return GestureDetector(
+      child: Card(
+        margin: EdgeInsets.all(10.px),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(_circular))),
+        elevation: 8,
+        child: Column(
+          children: [
+            _buildBasicInfo(context),
+            _buildOperationInfo(),
+          ],
+        ),
       ),
+      onTap: (){
+        Navigator.of(context).pushNamed(FCDetailScreen.routeName,arguments: _mealModel);
+      },
     );
   }
 
