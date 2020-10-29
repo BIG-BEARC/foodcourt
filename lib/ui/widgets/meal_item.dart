@@ -40,6 +40,7 @@ class FCMealItem extends StatelessWidget {
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(_circular),
               topRight: Radius.circular(_circular)),
+          //todo 未使用 placeholder
           child: Image.network(
             _mealModel.imageUrl,
             width: double.infinity,
