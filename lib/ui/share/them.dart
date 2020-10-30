@@ -12,6 +12,7 @@ class AppTheme{
 
   static final ThemeData theme = ThemeData(
       primarySwatch: Colors.pink,
+      accentColor: Colors.orangeAccent,
       textTheme: TextTheme(
         bodyText1:TextStyle(fontSize: bodyFontSize),
         headline5:TextStyle(fontSize: smallFontSize,color: Colors.black87),

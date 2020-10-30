@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodcourt/core/viewmodel/favorite_model.dart';
 import 'package:foodcourt/core/viewmodel/meal_view_model.dart';
 
 import 'package:foodcourt/ui/share/them.dart';
@@ -8,8 +9,11 @@ import 'ui/share/size_fit.dart';
 import 'core/router/router.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (ctx) => FCMealViewModel(),
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (ctx) => FCMealViewModel()),
+      ChangeNotifierProvider(create: (ctx) => FCFavoriteViewModel()),
+    ],
     child: MyApp(),
   ));
 }

@@ -13,7 +13,7 @@ class _FCFavoriteScreenState extends State<FCFavoriteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('收藏'),
+        title: Text('我的收藏'),
         centerTitle: true,
       ),
       body: FCFavoriteContent(),

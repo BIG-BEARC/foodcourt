@@ -9,12 +9,18 @@ class FCOperationItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-      _icon,
-      SizedBox(width: 3.px,),
-      Text(_content)
-    ],);
+    return Container(
+      color: Colors.transparent,
+      padding: EdgeInsets.symmetric(vertical: 16.px,horizontal: 8.px),
+      width: 80.px,
+      alignment: Alignment.center,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+        _icon,
+        SizedBox(width: 3.px,),
+        Text(_content,style: TextStyle(),)
+      ],),
+    );
   }
 }

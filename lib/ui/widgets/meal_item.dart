@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:foodcourt/core/model/meal_model.dart';
 import 'package:foodcourt/core/extension/int_extension.dart';
+import 'package:foodcourt/core/viewmodel/favorite_model.dart';
 import 'package:foodcourt/ui/pages/detail/detail.dart';
 import 'package:foodcourt/ui/pages/meal/operation_item.dart';
+import 'package:provider/provider.dart';
 
 class FCMealItem extends StatelessWidget {
   final FCMealModel _mealModel;
@@ -27,8 +29,9 @@ class FCMealItem extends StatelessWidget {
           ],
         ),
       ),
-      onTap: (){
-        Navigator.of(context).pushNamed(FCDetailScreen.routeName,arguments: _mealModel);
+      onTap: () {
+        Navigator.of(context)
+            .pushNamed(FCDetailScreen.routeName, arguments: _mealModel);
       },
     );
   }
@@ -40,13 +43,14 @@ class FCMealItem extends StatelessWidget {
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(_circular),
               topRight: Radius.circular(_circular)),
-          //todo 未使用 placeholder
-          child: Image.network(
-            _mealModel.imageUrl,
-            width: double.infinity,
-            height: 250.px,
-            fit: BoxFit.cover,
-          ),
+          child: FadeInImage(
+              width: double.infinity,
+              height: 250.px,
+              fit: BoxFit.cover,
+              placeholder: AssetImage('assets/images/juren.jpeg'),
+              image: NetworkImage(
+                _mealModel.imageUrl,
+              )),
         ),
         Positioned(
           right: 10.px,
@@ -70,16 +74,28 @@ class FCMealItem extends StatelessWidget {
   }
 
   Widget _buildOperationInfo() {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.px),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          FCOperationItem(Icon(Icons.access_time), "${_mealModel.duration} min"),
-          FCOperationItem(Icon(Icons.restaurant), _mealModel.complexityStr),
-          FCOperationItem(Icon(Icons.favorite), "未收藏"),
-        ],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        FCOperationItem(Icon(Icons.access_time), "${_mealModel.duration} min"),
+        FCOperationItem(Icon(Icons.restaurant), _mealModel.complexityStr),
+        _buildFavorItem(),
+      ],
     );
+  }
+
+  Widget _buildFavorItem() {
+    return Consumer<FCFavoriteViewModel>(builder: (ctx,favoriteVM,child){
+      // 1.判断是否收藏状态
+      final iconData = favoriteVM.isFavoriteMeal(_mealModel) ? Icons.favorite: Icons.favorite_border;
+      final favorColor = favoriteVM.isFavoriteMeal(_mealModel) ? Colors.red: Colors.black;
+      final title = favoriteVM.isFavoriteMeal(_mealModel)? "收藏  ": "未收藏";
+      return GestureDetector(
+        child:  FCOperationItem(Icon(iconData,color: favorColor,), title),
+        onTap: (){
+          favoriteVM.handleFavoriteMealList(_mealModel);
+        },
+      );
+    });
   }
 }
