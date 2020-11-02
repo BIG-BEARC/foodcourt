@@ -3,6 +3,7 @@ import 'package:foodcourt/ui/pages/detail/detail.dart';
 
 import 'package:foodcourt/ui/pages/err/unkonwn_page.dart';
 import 'package:foodcourt/ui/pages/favorite/favorite.dart';
+import 'package:foodcourt/ui/pages/filter/filter.dart';
 import 'package:foodcourt/ui/pages/home/home.dart';
 import 'package:foodcourt/ui/pages/main/main.dart';
 import 'package:foodcourt/ui/pages/meal/meal.dart';
@@ -17,12 +18,19 @@ class Routers {
   };
 
   static RouteFactory generateRoute = (setting) {
+    if (setting.name == FCFilterScreen.routeName) {
+      return MaterialPageRoute(
+          builder: (ctx) {
+            return FCFilterScreen();
+          },
+          fullscreenDialog: true);
+    }
     return null;
   };
 
   static final Map<String, WidgetBuilder> routes = {
     FCMainScreen.routeName: (ctx) => FCMainScreen(),
     FCMealScreen.routeName: (ctx) => FCMealScreen(),
-    FCDetailScreen.routeName:(ctx)=>FCDetailScreen(),
+    FCDetailScreen.routeName: (ctx) => FCDetailScreen(),
   };
 }

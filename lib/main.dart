@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:foodcourt/core/viewmodel/favorite_model.dart';
-import 'package:foodcourt/core/viewmodel/meal_view_model.dart';
+import 'package:foodcourt/core/viewmodel/filter_view_model.dart';
+import 'package:provider/provider.dart';
 
 import 'package:foodcourt/ui/share/them.dart';
-import 'package:provider/provider.dart';
 import 'ui/share/size_fit.dart';
 
 import 'core/router/router.dart';
+import 'package:foodcourt/core/viewmodel/favorite_model.dart';
+import 'package:foodcourt/core/viewmodel/meal_view_model.dart';
 
 void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (ctx) => FCMealViewModel()),
       ChangeNotifierProvider(create: (ctx) => FCFavoriteViewModel()),
+      ChangeNotifierProvider(create: (ctx) => FCFilterViewModel()),
     ],
     child: MyApp(),
   ));

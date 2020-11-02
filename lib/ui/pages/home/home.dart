@@ -12,6 +12,10 @@ class _FCHomeScreenState extends State<FCHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(icon: Icon(Icons.menu),
+        onPressed: (){
+          Scaffold.of(context).openDrawer();
+        },),
         title: Text('美食广场'),
         centerTitle: true,
       ),
