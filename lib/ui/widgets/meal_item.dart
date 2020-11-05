@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:foodcourt/core/model/meal_model.dart';
 import 'package:foodcourt/core/extension/int_extension.dart';
 import 'package:foodcourt/core/viewmodel/favorite_model.dart';
+import 'package:foodcourt/generated/l10n.dart';
 import 'package:foodcourt/ui/pages/detail/detail.dart';
 import 'package:foodcourt/ui/pages/meal/operation_item.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +26,7 @@ class FCMealItem extends StatelessWidget {
         child: Column(
           children: [
             _buildBasicInfo(context),
-            _buildOperationInfo(),
+            _buildOperationInfo(context),
           ],
         ),
       ),
@@ -73,23 +74,23 @@ class FCMealItem extends StatelessWidget {
     );
   }
 
-  Widget _buildOperationInfo() {
+  Widget _buildOperationInfo(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        FCOperationItem(Icon(Icons.access_time), "${_mealModel.duration} min"),
+        FCOperationItem(Icon(Icons.access_time), "${_mealModel.duration  }  ${ S.of(context).min} "),
         FCOperationItem(Icon(Icons.restaurant), _mealModel.complexityStr),
-        _buildFavorItem(),
+        _buildFavorItem(context),
       ],
     );
   }
 
-  Widget _buildFavorItem() {
+  Widget _buildFavorItem(BuildContext context) {
     return Consumer<FCFavoriteViewModel>(builder: (ctx,favoriteVM,child){
       // 1.判断是否收藏状态
       final iconData = favoriteVM.isFavoriteMeal(_mealModel) ? Icons.favorite: Icons.favorite_border;
       final favorColor = favoriteVM.isFavoriteMeal(_mealModel) ? Colors.red: Colors.black;
-      final title = favoriteVM.isFavoriteMeal(_mealModel)? "收藏  ": "未收藏";
+      final title = favoriteVM.isFavoriteMeal(_mealModel)? S.of(context).favorite: S.of(context).un_favorite;
       return GestureDetector(
         child:  FCOperationItem(Icon(iconData,color: favorColor,), title),
         onTap: (){

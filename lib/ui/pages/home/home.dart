@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodcourt/generated/l10n.dart';
 import 'package:foodcourt/ui/pages/home/home_content.dart';
 
 class FCHomeScreen extends StatefulWidget {
@@ -16,7 +17,7 @@ class _FCHomeScreenState extends State<FCHomeScreen> {
         onPressed: (){
           Scaffold.of(context).openDrawer();
         },),
-        title: Text('美食广场'),
+        title: Text(S.of(context).food_court),
         centerTitle: true,
       ),
       body: FCHomeContent(),

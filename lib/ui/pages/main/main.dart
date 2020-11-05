@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodcourt/generated/l10n.dart';
 import 'package:foodcourt/ui/pages/favorite/favorite.dart';
 import 'package:foodcourt/ui/pages/home/home.dart';
 import 'package:foodcourt/ui/pages/main/initialize_item.dart';
