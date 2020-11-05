@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:foodcourt/core/model/meal_model.dart';
+import 'package:foodcourt/core/viewmodel/base_view_model.dart';
 
-class FCFavoriteViewModel extends ChangeNotifier {
-   List<FCMealModel> favoriteMealList = [];
+class FCFavoriteViewModel extends BaseViewModel {
 
-  List<FCMealModel> get favoriteList=> favoriteMealList;
 
   void addFavoriteMealList(FCMealModel mealModel) {
-    favoriteMealList.add(mealModel);
+    originMeals.add(mealModel);
     notifyListeners();
   }
 
   void removeFavoriteMealList(FCMealModel mealModel) {
-    favoriteMealList.remove(mealModel);
+    originMeals.remove(mealModel);
     notifyListeners();
   }
 
   void handleFavoriteMealList(FCMealModel mealModel) {
-    if (favoriteMealList.contains(mealModel)) {
+    if (originMeals.contains(mealModel)) {
       removeFavoriteMealList(mealModel);
     } else {
       addFavoriteMealList(mealModel);
@@ -25,6 +24,6 @@ class FCFavoriteViewModel extends ChangeNotifier {
   }
 
   bool isFavoriteMeal(FCMealModel mealModel){
-    return favoriteMealList.contains(mealModel);
+    return originMeals.contains(mealModel);
   }
 }

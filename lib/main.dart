@@ -12,9 +12,21 @@ import 'package:foodcourt/core/viewmodel/meal_view_model.dart';
 void main() {
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (ctx) => FCMealViewModel()),
-      ChangeNotifierProvider(create: (ctx) => FCFavoriteViewModel()),
+/*      ChangeNotifierProvider(create: (ctx) => FCMealViewModel()),
+      ChangeNotifierProvider(create: (ctx) => FCFavoriteViewModel()),*/
       ChangeNotifierProvider(create: (ctx) => FCFilterViewModel()),
+      ChangeNotifierProxyProvider<FCFilterViewModel, FCMealViewModel>(
+          create: (ctx) {
+        return FCMealViewModel();
+      }, update: (ctx, filterVM, mealVM) {
+        mealVM.updateFilters(filterVM);
+        return mealVM;
+      }),
+      ChangeNotifierProxyProvider<FCFilterViewModel,FCFavoriteViewModel>(create: (ctx)=>FCFavoriteViewModel(),
+          update: (ctx,filterVM,favoriteVM){
+        favoriteVM.updateFilters(filterVM);
+        return favoriteVM;
+          })
     ],
     child: MyApp(),
   ));

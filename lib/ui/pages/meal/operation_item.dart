@@ -12,7 +12,6 @@ class FCOperationItem extends StatelessWidget {
     return Container(
       color: Colors.transparent,
       padding: EdgeInsets.symmetric(vertical: 16.px,horizontal: 8.px),
-      width: 80.px,
       alignment: Alignment.center,
       child: Row(
         mainAxisSize: MainAxisSize.min,

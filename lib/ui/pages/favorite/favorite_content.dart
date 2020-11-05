@@ -16,7 +16,7 @@ class _FCFavoriteContentState extends State<FCFavoriteContent> {
     return Container(
       alignment: Alignment.center,
       child: Consumer<FCFavoriteViewModel>(builder: (ctx,favoriteVM,child){
-        if(favoriteVM.favoriteMealList.isEmpty)return Container(
+        if(favoriteVM.meals.isEmpty)return Container(
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -28,9 +28,9 @@ class _FCFavoriteContentState extends State<FCFavoriteContent> {
           ),
         );
         return ListView.builder(
-            itemCount: favoriteVM.favoriteMealList.length,
+            itemCount: favoriteVM.meals.length,
             itemBuilder: (context,index){
-          return FCMealItem(favoriteVM.favoriteMealList[index]);
+          return FCMealItem(favoriteVM.meals[index]);
         });
       }),
     );
