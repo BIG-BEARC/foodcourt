@@ -3,6 +3,9 @@ import 'package:umeng_sdk/umeng_sdk.dart';
 
 ///统计上报事件
 class UmengReportEvents {
+  static void init(){
+    UmengSdk.setPageCollectionModeAuto();
+  }
   static void Login({Map<String, dynamic> properties}) {
     UmengSdk.onEvent('Login', properties);
   }

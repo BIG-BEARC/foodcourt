@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:foodcourt/ui/pages/main/initialize_item.dart';
 import 'package:foodcourt/ui/pages/main/main_drawer.dart';
-import 'package:foodcourt/ui/share/initialize_third_party.dart';
+import 'package:foodcourt/ui/share/umeng_report_events.dart';
+import 'package:umeng_sdk/umeng_sdk.dart';
+
 
 
 
@@ -17,9 +19,9 @@ class _FCMainScreenState extends State<FCMainScreen> {
 @override
   void initState() {
     super.initState();
-   // InitThirdParty();
-
-  }
+    UmengReportEvents.init();
+    UmengSdk.onEvent('myevent', {'name':'jack', 'age':18, 'male':true});
+    }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
