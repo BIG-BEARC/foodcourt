@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:foodcourt/generated/l10n.dart';
-import 'package:foodcourt/ui/pages/favorite/favorite.dart';
-import 'package:foodcourt/ui/pages/home/home.dart';
 import 'package:foodcourt/ui/pages/main/initialize_item.dart';
 import 'package:foodcourt/ui/pages/main/main_drawer.dart';
+import 'package:foodcourt/ui/share/initialize_third_party.dart';
+
+
 
 class FCMainScreen extends StatefulWidget {
   static const String routeName = '/';
@@ -14,7 +14,12 @@ class FCMainScreen extends StatefulWidget {
 
 class _FCMainScreenState extends State<FCMainScreen> {
   int _currentIndex = 0;
+@override
+  void initState() {
+    super.initState();
+   // InitThirdParty();
 
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
